@@ -1,8 +1,11 @@
 import './App.css'
 import shoppingIcon from './assets/shopping-icon.svg'
-
+import {useState} from 'react'
 
 function App() {
+  const [value, setValue] = useState('');
+
+  console.log('value=', value)
 
   return (
     <>
@@ -13,7 +16,7 @@ function App() {
 
     <main className='container'>
       <form className='form'>
-        <input className='input' type='text' placeholder='list'/>
+        <input onChange={(e) => {setValue(e.target.value)}} value={value} className='input' type='text' placeholder='list'/>
         <button className='add-button' type='submit'>Submit</button>
       </form>
     </main>
