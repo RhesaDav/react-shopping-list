@@ -1,6 +1,9 @@
 import './App.css'
 import shoppingIcon from './assets/shopping-icon.svg'
+import plusIcon from './assets/plus-icon.svg'
+import minusIcon from './assets/minus-icon.svg'
 import {useState} from 'react'
+import classnames from 'classnames'
 
 function App() {
   const [value, setValue] = useState('');
@@ -9,7 +12,21 @@ function App() {
     {title: 'Tahu', count: 1},
   ]);
 
-  console.log('value=', value)
+  const handleIncreaseCount = (index) => {
+    const newTodo = [...todo]
+
+    newTodo[index].count = newTodo[index].count +1
+
+    setTodo(newTodo)
+  }
+
+  const handleDecreaseCount = (index) => {
+    const newTodo = [...todo]
+
+    newTodo[index].count = newTodo[index].count -1
+
+    setTodo(newTodo)
+  }
 
   return (
     <>
@@ -25,12 +42,23 @@ function App() {
       </form>
 
       {todo.length > 0 ? (
-        <div className='todo'>
-          {todo.map((todo) => {
+        <div className='todo-content'>
+          {todo.map((todo,index, arr) => {
             return(
-              <div>
+              <div key={index} className={`todo ${!(arr.length=== index +1) && 'todo-divider'}`}>
                 {todo.title}
-                {todo.count}
+                <div className='todo-icon-wrapper'>
+
+                  <div className='todo-count' >{todo.count}</div>
+                  <button onClick={()=> handleIncreaseCount(index)} className='todo-action-button'>
+                    <img src={plusIcon} alt='plus icon' />
+                  </button>
+
+                  <button onClick={() => handleDecreaseCount(index)} className='todo-action-button'>
+                    <img src={minusIcon} alt='minus icon' />
+                  </button>
+
+                </div>
               </div>
             )
           })}
