@@ -4,6 +4,10 @@ import {useState} from 'react'
 
 function App() {
   const [value, setValue] = useState('');
+  const [todo, setTodo] = useState([
+    {title: 'Susu', count: 1},
+    {title: 'Tahu', count: 1},
+  ]);
 
   console.log('value=', value)
 
@@ -14,12 +18,28 @@ function App() {
       <h1 className='nav-title'>Shopping List</h1>
     </nav>
 
-    <main className='container'>
+    <section className='container'>
       <form className='form'>
         <input onChange={(e) => {setValue(e.target.value)}} value={value} className='input' type='text' placeholder='list'/>
         <button className='add-button' type='submit'>Submit</button>
       </form>
-    </main>
+
+      {todo.length > 0 ? (
+        <div className='todo'>
+          {todo.map((todo) => {
+            return(
+              <div>
+                {todo.title}
+                {todo.count}
+              </div>
+            )
+          })}
+        </div>
+      ) : (
+        <div>Kosong</div>
+      )} 
+
+    </section>
     </>
   );
 }
