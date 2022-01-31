@@ -12,6 +12,22 @@ function App() {
     {title: 'Tahu', count: 1},
   ]);
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    if (!value) {
+      alert('No Blank List !')
+      return 
+    }
+
+    const addTodo = [...todo, {
+      title: value,
+      count: 1
+    }]
+
+    setTodo(addTodo)
+  }
+
   const handleIncreaseCount = (index) => {
     const newTodo = [...todo]
 
@@ -36,7 +52,7 @@ function App() {
     </nav>
 
     <section className='container'>
-      <form className='form'>
+      <form className='form' onSubmit={handleSubmit}>
         <input onChange={(e) => {setValue(e.target.value)}} value={value} className='input' type='text' placeholder='list'/>
         <button className='add-button' type='submit'>Submit</button>
       </form>
