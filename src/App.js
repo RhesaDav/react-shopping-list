@@ -10,6 +10,13 @@ function App() {
       <img src={shoppingIcon} className="nav-icon" alt='shopping icon'/>
       <h1 className='nav-title'>Shopping List</h1>
     </nav>
+
+    <main className='container'>
+      <form className='form'>
+        <input className='input' type='text' placeholder='list'/>
+        <button className='add-button' type='submit'>Submit</button>
+      </form>
+    </main>
     </>
   );
 }
